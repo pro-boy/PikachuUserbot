@@ -1,1 +1,1 @@
-userbot: python -m pikabot
+Pikabot: bash PikaStart
