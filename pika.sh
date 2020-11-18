@@ -61,7 +61,7 @@ apt-get install -y --no-install-recommends \
 apt autoremove --yes
 
 pip3 install --upgrade pip setuptools 
-git clone https://github.com/ItzSjDude/PikachuUserbot ./
+git clone -b Beta https://github.com/ItzSjDude/PikachuUserbot ./
 mkdir bin && mkdir pikabot/main_plugs
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt install -y ./google-chrome-stable_current_amd64.deb
 rm -f ./google-chrome-stable_current_amd64.deb
