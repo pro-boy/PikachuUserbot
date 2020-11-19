@@ -1,4 +1,11 @@
 #!/bin/bash
+# © @ItzSjdude, Made for Pikabot
+_logo() {
+    echo '╔═╦╦╗───╔╗──╔╗'
+    echo '║╬╠╣╠╦═╗║╚╦═╣╚╗'
+    echo '║╔╣║═╣╬╚╣╬║╬║╔╣'
+    echo '╚╝╚╩╩╩══╩═╩═╩═╝'
+}
 
 _cleanup() {
     echo 'Cleaning up Pikabot'
@@ -13,16 +20,17 @@ _source() {
 _upgradePip() {
     echo '••• Updating Pip •••' 
     pip3 install -U pip &> /dev/null
-    echo 'Updated Pip 🚶'
+    echo '••• Updated Pip •••'
 }
 
 _insReq() {
     echo '••• Installing Requirements •••'
-    pip3 install -r $1/requirements.txt &> /dev/null
-    echo 'Installed Requirements 🚶'
+    pip install -r requirements.txt
+    echo '••• Installed Requirements •••'
 }
 
 start() {
+    _logo
     _cleanup
     _source
     _upgradePip
