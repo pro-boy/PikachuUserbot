@@ -2,7 +2,7 @@
 
 . init/Deps.sh 
 
-echo 'Cleaning up 'Pikabot'
+echo 'Cleaning up Pikabot'
 rm -rf ./* && rm -rf ./.gitignore && rm -rf ./.git
 
 echo 'Getting Source Ready' 
