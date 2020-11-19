@@ -15,7 +15,7 @@ if bool(ENV):
        )
         LOGS = getLogger(__name__)
     else:
-        basicConfig(format="◆━%(name)s━◆ ◉━(levelname)s━◉  ⎝✧%(message)s✧⎠",level=INFO,)
+        basicConfig(format="◆━%(name)s━◆ ◉━%(levelname)s━◉  ⎝✧%(message)s✧⎠",level=INFO,)
         LOGS = getLogger(__name__)
         logging.getLogger("telethon.statecache").setLevel(logging.ERROR)
         logging.getLogger("telethon.client.users").setLevel(logging.ERROR)
