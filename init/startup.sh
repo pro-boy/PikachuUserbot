@@ -10,4 +10,4 @@ git clone -b Beta https://github.com/ItzSjDude/PikachuUserbot ./
 
 mkdir ./pikabot/main_plugs
 
-python -m pikabot
+python3 -m pikabot
