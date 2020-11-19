@@ -1,10 +1,12 @@
 #!/bin/bash
 # © @ItzSjdude, Made for Pikabot
 _logo() {
-    echo '╔═╦╦╗───╔╗──╔╗'
-    echo '║╬╠╣╠╦═╗║╚╦═╣╚╗'
-    echo '║╔╣║═╣╬╚╣╬║╬║╔╣'
-    echo '╚╝╚╩╩╩══╩═╩═╩═╝'
+    echo '
+    ╔═╦╦╗───╔╗──╔╗
+    ║╬╠╣╠╦═╗║╚╦═╣╚╗
+    ║╔╣║═╣╬╚╣╬║╬║╔╣
+    ╚╝╚╩╩╩══╩═╩═╩═╝
+    '
 }
 
 _cleanup() {
@@ -25,7 +27,7 @@ _upgradePip() {
 
 _insReq() {
     echo '••• Installing Requirements •••'
-    pip install -r requirements.txt
+    pip install -r requirements.txt &> /dev/null
     echo '••• Installed Requirements •••'
 }
 
