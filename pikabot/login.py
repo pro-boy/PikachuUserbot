@@ -5,7 +5,7 @@ import sys
 from telethon import TelegramClient, events, custom
 from telethon.sessions import StringSession
 from telethon.errors.rpcerrorlist import *
-
+from pikabot import LOGS as logging
 from var import Var 
 
 _phone_ ="Enter your Phone no. On which u want @PikachuUserbot 😛"
