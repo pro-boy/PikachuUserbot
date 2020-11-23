@@ -42,33 +42,31 @@ async def main():
                 await pika_client.connect()
                 sent = await pika_client.send_code_request(phone)
                 logging.info(sent)
-                if sent.phone_registered:
-                    await conv.send_message(_verif_)
+                await conv.send_message(_verif_)
+                response = conv.wait_event(events.NewMessage(
+                    chats=event.chat_id
+                ))
+                response = await response
+                logging.info(response)
+                received_code = response.message.message.strip()
+                received_tfa_code = None
+                received_code = "".join(received_code.split(" "))
+                try:
+                    await pika_client.sign_in(phone, code=received_code, password=received_tfa_code)
+                except PhoneCodeInvalidError:
+                    await conv.send_message(_code_)
+                    return
+                except Exception as e:
+                    logging.info(str(e))
+                    await conv.send_message(_2vfa_)
                     response = conv.wait_event(events.NewMessage(
                         chats=event.chat_id
                     ))
                     response = await response
                     logging.info(response)
-                    received_code = response.message.message.strip()
-                    received_tfa_code = None
-                    received_code = "".join(received_code.split(" "))
-                    try:
-                        await pika_client.sign_in(phone, code=received_code, password=received_tfa_code)
-                    except PhoneCodeInvalidError:
-                        await conv.send_message(_code_)
-                        return
-                    except Exception as e:
-                        logging.info(str(e))
-                        await conv.send_message(_2vfa_)
-                        response = conv.wait_event(events.NewMessage(
-                            chats=event.chat_id
-                        ))
-                        response = await response
-                        logging.info(response)
-                        received_tfa_code = response.message.message.strip()
-                        await pika_client.sign_in(password=received_tfa_code)
+                    received_tfa_code = response.message.message.strip()
+                    await pika_client.sign_in(password=received_tfa_code)
                     pika_client_me = await pika_client.get_me()
-                    
                     logging.info(pika_client_me.stringify())
                     s_string = pika_client.session.save()
                     await conv.send_message(f"`{s_string}`")
