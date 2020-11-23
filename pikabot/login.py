@@ -1,13 +1,14 @@
-import asyncio
-import logging
-import os
-import sys
+import asyncio,logging,os,sys
 from telethon import TelegramClient, events, custom
 from telethon.sessions import StringSession
 from telethon.errors.rpcerrorlist import *
 from pikabot import LOGS as logging
 from var import Var 
 
+Heroku = heroku3.from_key(Var.HEROKU_API_KEY)
+app = Heroku.app(Var.HEROKU_APP_NAME)
+
+config['New_var'] = 'new_val'
 _phone_ ="**Enter your Phone no. On which u want @PikachuUserbot 😛**\n 
 If Indian No. **+91xxxxxxxxxx** else use **Country Code**"
 _2vfa_ = "Seems like u have **2-Step verification** On your Account. Enter Your Password"
@@ -25,7 +26,7 @@ async def main():
         @_PikaBot_.on(events.NewMessage())
         async def handler(event):
             APP_ID = Var.APP_ID;API_HASH = Var.API_HASH
-               
+            Config=app.config()  
             async with event.client.conversation(event.chat_id) as conv:
                 await conv.send_message(_phone_)
                 pikaget = conv.wait_event(events.NewMessage(
@@ -69,8 +70,8 @@ async def main():
                     pika_client_me = await pika_client.get_me()
                     logging.info(pika_client_me.stringify())
                     s_string = pika_client.session.save()
-                    await conv.send_message(f"`{s_string}`")
-                    
+                    await conv.send_message("**String Session Generated and configured To heroku Var successfully**")
+                    Config['STRING_SESSION'] = s_string
         await _PikaBot_.run_until_disconnected()
 
 if __name__ == '__main__':
