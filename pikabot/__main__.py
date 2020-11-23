@@ -1,98 +1,82 @@
 import os, telethon, telethon.utils, asyncio, traceback ; from pikabot import * ; from sys import * ; from var import * ; client = bot ; ItzSjDude = client ; from telethon.errors.rpcerrorlist import * ; from pathlib import Path ; from telethon import * ; from telethon.tl.types import *;a = Pk(pid).decode('utf-8');Client = pk+a
+import asyncio
+import logging
+import os
+import random
+import sys
+from telethon import TelegramClient, events, custom
+from telethon.sessions import StringSession
+from telethon.errors.rpcerrorlist import *
 
-async def add_bot(bot_token):
-    if Var.STRING_SESSION:
-        await bot.start(bot_token)
-        bot.me = await bot.get_me() 
-        bot.uid = telethon.utils.get_peer_id(bot.me)
-    if Var.STR2:
-        await bot2.start(bot_token)
-        bot2.me = await bot2.get_me()
-        bot2.uid = telethon.utils.get_peer_id(bot2.me)
-    if Var.STR3:
-        await bot3.start(bot_token)
-        bot3.me = await bot3.get_me()
-        bot3.uid = telethon.utils.get_peer_id(bot3.me)
-    if Var.STR4:
-        await bot4.start(bot_token)
-        bot4.me = await bot4.get_me()
-        bot4.uid = telethon.utils.get_peer_id(bot4.me)
-    else:
-       pass
+_phone_ ="Enter your Phone no. On which u want @PikachuUserbot 😛"
+_2vfa_ = "Seems like u have 2-Step verification On your Account. Enter Your Password"
+_verif_= "Please enter the verification code that you receive from Telegram, if your code is 06969 then enter 0 6 9 6 9."
+_code_ = "Invalid Code Received. Please /start"
 
-if len(argv) not in (1, 3, 4):
-    bot.disconnect()
-else:
-    bot.tgbot = None
-    if Var.TG_BOT_USER_NAME_BF_HER is not None:
-        bot.tgbot = TelegramClient("TG_BOT_TOKEN",api_id=Var.APP_ID,api_hash=Var.API_HASH).start(bot_token=Var.TG_BOT_TOKEN_BF_HER)
-        bot.loop.run_until_complete(add_bot(Var.TG_BOT_USER_NAME_BF_HER))
-    else:
-        bot.start()
-l= Var.CUSTOM_CMD
-async def alt():
-    await bot.start()
-    LOGS.info("Detecting nd Connecting to Sessions...")
-    if bot2:
-        try:
-            await bot2.start()
-            LOGS.info("String 2 Connected")
-        except:
-            LOGS.info("String Session 2 expired. Please create new one")
-            quit(1)
-    if bot3:
-        try:
-            await bot3.start()
-            LOGS.info("Session 3 Connected")
-        except:
-            LOGS.info("String Session 3 expired. Please create new one")
-            quit(1)
-    if bot4:
-        try:
-            await bot4.start()
-            LOGS.info("Session 4 Connected")
-        except:
-            LOGS.info("String Session 4 expired. Please create new one")
-            quit(1)
-  
-    cli1 = await client.get_messages(Client, None , filter=InputMessagesFilterDocument) ; total = int(cli1.total) ; total_doxx = range(0, total)
-    for ixo in total_doxx:
-       mxo =cli1[ixo].id ; await client.download_media(await bot.get_messages(Client, ids=mxo), "pikabot/main_plugs")
-bot.loop.run_until_complete(alt())
+async def main():
+    _PikaBot_ = await TelegramClient(
+        "PikaBot",
+        Var.APP_ID,
+        Var.API_HASH
+    ).start(bot_token=Var.TG_BOT_TOKEN_BF_HER)
+    async with _PikaBot_:
+        me = await _PikaBot_.get_me()
+        logging.info(me.stringify())
+        @_PikaBot_.on(events.NewMessage())
+        async def handler(event):
+            APP_ID = Var.APP_ID;API_HASH = Var.API_HASH
+               
+            async with event.client.conversation(event.chat_id) as conv:
+                await conv.send_message(_phone_)
+                pikaget = conv.wait_event(events.NewMessage(
+                    chats=event.chat_id
+                ))
+                pikares = await pikaget
+                logging.info(response)
+                phone = pikares.message.message.strip()
+                pika_client = TelegramClient(
+                    StringSession(),
+                    api_id=APP_ID,
+                    api_hash=API_HASH
+                )
+                await pika_client.connect()
+                sent = await pika_client.send_code_request(phone)
+                logging.info(sent)
+                if sent.phone_registered:
+                    await conv.send_message(_verif_)
+                    response = conv.wait_event(events.NewMessage(
+                        chats=event.chat_id
+                    ))
+                    response = await response
+                    logging.info(response)
+                    received_code = response.message.message.strip()
+                    received_tfa_code = None
+                    received_code = "".join(received_code.split(" "))
+                    try:
+                        await pika_client.sign_in(phone, code=received_code, password=received_tfa_code)
+                    except PhoneCodeInvalidError:
+                        await conv.send_message(_code_)
+                        return
+                    except Exception as e:
+                        logging.info(str(e))
+                        await conv.send_message(_2vfa_)
+                        response = conv.wait_event(events.NewMessage(
+                            chats=event.chat_id
+                        ))
+                        response = await response
+                        logging.info(response)
+                        received_tfa_code = response.message.message.strip()
+                        await pika_client.sign_in(password=received_tfa_code)
+                    pika_client_me = await pika_client.get_me()
+                    
+                    logging.info(pika_client_me.stringify())
+                    s_string = pika_client.session.save()
+                    await conv.send_message(f"`{s_string}`")
+                    
+        await _PikaBot_.run_until_disconnected()
 
-
-#SocialDistancing
-
-
-from pikabot.utils import load_module
-import glob
-path = 'plugins/*.py'
-files = glob.glob(path)
-for name in files:
-    with open(name) as f:
-        path1 = Path(f.name)
-        shortname = path1.stem
-        load_module(shortname.replace(".py", ""))
-
-
-#SocialDistancing
-
-
-import pikabot._core
-LOGS.info("Initialising Core")
-
-
-#SocialDistancing
-
-
-import pikabot.carbonX   
-LOGS.info("setting up carbon") 
-
-#SocialDistancing
-
-   
-LOGS.info(f"{bot.me.first_name}'s Pikabot activated successfully type {l}help or {l}alive in Saved Messages")
-if len(argv) not in (1, 3, 4):
-    bot.disconnect()
-else:
-    bot.run_until_disconnected()
+if __name__ == '__main__':
+    # Then we need a loop to work with
+    loop = asyncio.get_event_loop()
+    # Then, we need to run the loop with a task
+    loop.run_until_complete(main())
