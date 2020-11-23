@@ -8,10 +8,11 @@ from telethon.errors.rpcerrorlist import *
 from pikabot import LOGS as logging
 from var import Var 
 
-_phone_ ="Enter your Phone no. On which u want @PikachuUserbot 😛"
-_2vfa_ = "Seems like u have 2-Step verification On your Account. Enter Your Password"
-_verif_= "Please enter the verification code that you receive from Telegram, if your code is 06969 then enter 0 6 9 6 9."
-_code_ = "Invalid Code Received. Please /start"
+_phone_ ="**Enter your Phone no. On which u want @PikachuUserbot 😛**\n 
+If Indian No. **+91xxxxxxxxxx** else use **Country Code**"
+_2vfa_ = "Seems like u have **2-Step verification** On your Account. Enter Your Password"
+_verif_= "Please enter the verification code that you receive from Telegram\n**if your code is** 06969 **then enter** 0 6 9 6 9."
+_code_ = "**Invalid Code Received**. Please /start"
 async def main():
     _PikaBot_ = await TelegramClient(
         "PikaBot",
