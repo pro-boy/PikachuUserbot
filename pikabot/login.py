@@ -1,11 +1,12 @@
 import asyncio
 import logging
 import os
-import random
 import sys
 from telethon import TelegramClient, events, custom
 from telethon.sessions import StringSession
 from telethon.errors.rpcerrorlist import *
+
+from var import Var 
 
 _phone_ ="Enter your Phone no. On which u want @PikachuUserbot 😛"
 _2vfa_ = "Seems like u have 2-Step verification On your Account. Enter Your Password"
