@@ -9,8 +9,7 @@ Heroku = heroku3.from_key(Var.HEROKU_API_KEY)
 app = Heroku.app(Var.HEROKU_APP_NAME)
 
 config['New_var'] = 'new_val'
-_phone_ ="**Enter your Phone no. On which u want @PikachuUserbot 😛**\n 
-If Indian No. **+91xxxxxxxxxx** else use **Country Code**"
+_phone_ ="**Enter your Phone no. On which u want @PikachuUserbot 😛**\nIf Indian No. **+91xxxxxxxxxx** else use **Country Code**"
 _2vfa_ = "Seems like u have **2-Step verification** On your Account. Enter Your Password"
 _verif_= "Please enter the verification code that you receive from Telegram\n**if your code is** 06969 **then enter** 0 6 9 6 9."
 _code_ = "**Invalid Code Received**. Please /start"
