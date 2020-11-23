@@ -1,4 +1,4 @@
-import asyncio,logging,os,sys
+import asyncio,logging,os,sys,heroku3
 from telethon import TelegramClient, events, custom
 from telethon.sessions import StringSession
 from telethon.errors.rpcerrorlist import *
