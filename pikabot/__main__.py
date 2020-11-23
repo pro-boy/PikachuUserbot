@@ -6,24 +6,24 @@ if bot is None:
     loop.run_until_complete(main())
 else:
     async def add_bot(bot_token):
-    if Var.STRING_SESSION:
-        await bot.start(bot_token)
-        bot.me = await bot.get_me() 
-        bot.uid = telethon.utils.get_peer_id(bot.me)
-    if Var.STR2:
-        await bot2.start(bot_token)
-        bot2.me = await bot2.get_me()
-        bot2.uid = telethon.utils.get_peer_id(bot2.me)
-    if Var.STR3:
-        await bot3.start(bot_token)
-        bot3.me = await bot3.get_me()
-        bot3.uid = telethon.utils.get_peer_id(bot3.me)
-    if Var.STR4:
-        await bot4.start(bot_token)
-        bot4.me = await bot4.get_me()
-        bot4.uid = telethon.utils.get_peer_id(bot4.me)
-    else:
-       pass
+        if Var.STRING_SESSION:
+            await bot.start(bot_token)
+            bot.me = await bot.get_me() 
+            bot.uid = telethon.utils.get_peer_id(bot.me)
+        if Var.STR2:
+            await bot2.start(bot_token)
+            bot2.me = await bot2.get_me()
+            bot2.uid = telethon.utils.get_peer_id(bot2.me)
+        if Var.STR3:
+            await bot3.start(bot_token)
+            bot3.me = await bot3.get_me()
+            bot3.uid = telethon.utils.get_peer_id(bot3.me)
+        if Var.STR4:
+            await bot4.start(bot_token)
+            bot4.me = await bot4.get_me()
+            bot4.uid = telethon.utils.get_peer_id(bot4.me)
+        else:
+            pass
 
     if len(argv) not in (1, 3, 4):
         bot.disconnect()
