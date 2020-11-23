@@ -32,7 +32,7 @@ async def main():
                     chats=event.chat_id
                 ))
                 pikares = await pikaget
-                logging.info(response)
+                logging.info(pikares)
                 phone = pikares.message.message.strip()
                 pika_client = TelegramClient(
                     StringSession(),
