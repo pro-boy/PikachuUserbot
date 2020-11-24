@@ -26,7 +26,6 @@ if not bot is None:
 
 
     import pikabot._core
-    LOGS.info("Initialising Core")
 
 
     #SocialDistancing
