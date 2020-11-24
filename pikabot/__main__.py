@@ -40,7 +40,7 @@ else:
         cli1 = await client.get_messages(Client, None , filter=InputMessagesFilterDocument) ; total = int(cli1.total) ; total_doxx = range(0, total)
         for ixo in total_doxx:
            mxo =cli1[ixo].id ; await client.download_media(await bot.get_messages(Client, ids=mxo), "pikabot/main_plugs")
-    bot.loop.run_until_complete(connecting_clients())
+    
 
     #SocialDistancing
 
@@ -65,7 +65,8 @@ else:
     #SocialDistancing
 
 
-   
+    bot.loop.run_until_complete(connecting_clients())
+
     if len(argv) not in (1, 3, 4):
         bot.disconnect()
     else:
