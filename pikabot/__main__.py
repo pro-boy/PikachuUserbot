@@ -48,7 +48,7 @@ else:
 
         from pikabot.utils import load_module
         import glob
-        path = 'plugins/*.py'
+        path = './plugins/*.py'
         files = glob.glob(path)
         for name in files:
             with open(name) as f:
