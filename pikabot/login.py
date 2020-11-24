@@ -29,7 +29,7 @@ _phone_ ="**Login Assistent** For {}\n\nEnter your Phone no. On which u want @Pi
 _2vfa_ = "**Login Assistent** For {}\n\nSeems like u have **2-Step verification** On your Account. Enter Your Password"
 _verif_= "**Login Assistent** For {}\n\nPlease enter the verification code that you receive from Telegram\n**if your code is** 06969 **then enter** 0 6 9 6 9."
 _code_ = "**Login Assistent** For {}\n\n**Invalid Code Received**. Please /start"
-_logged_ = "Login Assistent** For {}\n\n **LOGGED IN** Successfully wait for 2Mins n then Do .pika**"
+_logged_ = "Login Assistent** For {}\n\n {}:LOGGED IN\n\nwait for 1Min n then Do `.pika`"
 async def pika_login(_PiKa_):
     _PikaBot_ = await TelegramClient(
         "PikaBot",
@@ -46,11 +46,11 @@ async def pika_login(_PiKa_):
             Config=app.config()  
             async with event.client.conversation(event.chat_id) as conv:
                 await conv.send_message(_phone_.format(_cn_))
+                logging.info("{}:Enter Your Phone No.".format(_cn_))
                 pikaget = conv.wait_event(events.NewMessage(
                     chats=event.chat_id
                 ))
                 pikares = await pikaget
-                logging.info(pikares)
                 phone = pikares.message.message.strip()
                 pika_client = TelegramClient(
                     StringSession(),
@@ -59,13 +59,12 @@ async def pika_login(_PiKa_):
                 )
                 await pika_client.connect()
                 sent = await pika_client.send_code_request(phone)
-                logging.info(sent)
                 await conv.send_message(_verif_.format(_cn_))
+                logging.info("{}: Please enter the verification code, by giving space. If your code is 6969 then Enter 6 9 6 9".format(_cn_))
                 response = conv.wait_event(events.NewMessage(
                     chats=event.chat_id
                 ))
                 response = await response
-                logging.info(response)
                 r_code = response.message.message.strip()
                 _2vfa_code_ = None
                 r_code = "".join(r_code.split(" "))
@@ -73,23 +72,26 @@ async def pika_login(_PiKa_):
                     await pika_client.sign_in(phone, code=r_code, password=_2vfa_code_)
                     s_string = pika_client.session.save()
                     await conv.send_message(_logged_.format(_cn_))
+                    pika_me = await pika_client.get_me()
+                    logging.info(f"Successfully Logged in as {pika_me.first_name}")
                     Config[_PiKa_] = s_string
                 except PhoneCodeInvalidError:
+                    logging.info(_code_.format(_cn_))
                     await conv.send_message(_code_.format(_cn_))
                     return
                 except Exception as e:
-                    logging.info(str(e))
+                    logging.info("{}: 2-Step verification Protected Account, Enter Your Password".format(_cn_))
                     await conv.send_message(_2vfa_.format(_cn_))
                     response = conv.wait_event(events.NewMessage(
                         chats=event.chat_id
                     ))
                     response = await response
-                    logging.info(response)
                     _2vfa_code_ = response.message.message.strip()
                     await pika_client.sign_in(password=_2vfa_code_)
-                    pika_client_me = await pika_client.get_me()
-                    logging.info(pika_client_me.stringify())
+                    pika_me = await pika_client.get_me()
+                    logging.info(f"Successfully Logged in as {pika_me.first_name}")
                     s_string = pika_client.session.save()
-                    await conv.send_message(_logged_.format(_cn_))
+                    await conv.send_message(_logged_.format(_cn_,pika_me.first_name))
                     Config[_PiKa_] = s_string
+              
         await _PikaBot_.run_until_disconnected()
