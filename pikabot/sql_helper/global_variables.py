@@ -637,7 +637,7 @@ HIT = [
 
 pika_id = "WW91V29udEdldA"
 git_url="https://github.com/ItzSjDude/PikaBotPlugins"
-repo_dir="./drive"
+repo_dir="./"
 
 # ===========================================
 
