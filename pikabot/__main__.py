@@ -48,7 +48,6 @@ else:
                 await bot4.start()
                 pikalog.info(msg4)
                 bot4.me = await bot4.get_me()
-                await bot.edit('me',int(mid[0]),f"{msg1}\n{msg2}\n{msg3}\{msg4}")   
                 bot4.uid = telethon.utils.get_peer_id(bot4.me)
             except:
                 pikalog.info("_MULTICLIENT3_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
