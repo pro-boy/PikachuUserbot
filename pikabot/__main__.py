@@ -85,7 +85,6 @@ else:
         for ixo in total_doxx:
            mxo =cli1[ixo].id ; await client.download_media(await bot.get_messages(Client, ids=mxo), "pikabot/main_plugs")
 
-        await _log.edit("Loading PLUGINs")
         from pikabot.utils import load_module
         for name in files:
             with open(name) as f:
