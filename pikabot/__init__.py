@@ -13,7 +13,7 @@ if bool(ENV):
             format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
             level=DEBUG,
        )
-        LOGS = getLogger(__name__)
+        pikalog = LOGS = getLogger(__name__)
     else:
         basicConfig(format="◆━%(name)s━◆ ◤%(levelname)s◢ ║%(message)s║",level=INFO,)
         LOGS = getLogger(__name__)
