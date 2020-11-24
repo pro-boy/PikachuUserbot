@@ -6,6 +6,7 @@ if bot is None:
     _Pika_Loop_.run_until_complete(pika_login("STRING_SESSION"))
 else:
     l= Var.CUSTOM_CMD
+    from pikabor import LOGS as pikalog
     async def connecting_clients():
         if bot: 
             try: 
