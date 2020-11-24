@@ -2,12 +2,16 @@ import asyncio,logging,os,sys,heroku3
 from telethon import TelegramClient, events, custom
 from telethon.sessions import StringSession
 from telethon.errors.rpcerrorlist import *
-from pikabot import LOGS as logging
+from logging import *
+
+
 from var import Var 
 
 Heroku = heroku3.from_key(Var.HEROKU_API_KEY)
 app = Heroku.app(Var.HEROKU_APP_NAME)
 
+basicConfig(format="◆━%(name)s━◆ ◤%(levelname)s◢ ║%(message)s║",level=INFO,)
+logging = getLogger(__name__)
 
 def get_client(_Pika_):
     global a
