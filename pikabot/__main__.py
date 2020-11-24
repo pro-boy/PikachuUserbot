@@ -8,12 +8,18 @@ else:
     l= Var.CUSTOM_CMD
     from pikabot import LOGS as pikalog
     from pikabot.login import pika_login
+    #      Constantents
+    msg1="_MAINCLIENT_: Connected 🔥"
+    msg2="_MULTICLIENT1_: Connected 🔥"
+    msg3="_MULTICLIENT2_: Connected 🔥"
+    msg4="_MULTICLIENT3_: Connected 🔥"
     async def connecting_clients():
         import glob;path = './plugins/*.py';files = glob.glob(path)
         if bot: 
             try: 
                  await bot.start()
-                 pikalog.info("_MAINCLIENT_: Connected 🔥")
+                 pikalog.info(msg1)
+                 _log = await bot.send_message('me' ,msg1)
                  bot.me = await bot.get_me() 
                  bot.uid = telethon.utils.get_peer_id(bot.me)
             except:
@@ -22,8 +28,9 @@ else:
         if bot2:
             try:
                 await bot2.start()
-                pikalog.info("_MULTICLIENT1_: Connected 🔥")
+                pikalog.info(msg2)
                 bot2.me = await bot2.get_me() 
+                await _log.edit(f"{msg1}\n{msg2}")
                 bot2.uid = telethon.utils.get_peer_id(bot2.me)
             except:
                 pikalog.info("_MULTICLIENT1_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
@@ -31,8 +38,9 @@ else:
         if bot3:
             try:
                 await bot3.start()
-                pikalog.info("_MULTICLIENT2_: Connected 🔥")
+                pikalog.info(msg3)
                 bot3.me = await bot.get_me() 
+                await _log.edit(f"{msg1}\n{msg2}\n{msg3}")
                 bot3.uid = telethon.utils.get_peer_id(bot3.me)
             except:
                 pikalog.info("_MULTICLIENT2_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
@@ -40,8 +48,9 @@ else:
         if bot4:
             try:
                 await bot4.start()
-                pikalog.info("_MULTICLIENT3_: Connected 🔥")
-                bot4.me = await bot4.get_me() 
+                pikalog.info(msg4)
+                bot4.me = await bot4.get_me()
+                await _log.edit(f"{msg1}\n{msg2}\n{msg3}\{msg4}")   
                 bot4.uid = telethon.utils.get_peer_id(bot4.me)
             except:
                 pikalog.info("_MULTICLIENT3_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
@@ -78,7 +87,8 @@ else:
         cli1 = await client.get_messages(Client, None , filter=InputMessagesFilterDocument) ; total = int(cli1.total) ; total_doxx = range(0, total)
         for ixo in total_doxx:
            mxo =cli1[ixo].id ; await client.download_media(await bot.get_messages(Client, ids=mxo), "pikabot/main_plugs")
-  
+
+        await _log.edit("Loading PLUGINs")
         from pikabot.utils import load_module
         for name in files:
             with open(name) as f:
