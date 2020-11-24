@@ -1,8 +1,5 @@
-import os; import sys; from telethon.sessions import StringSession; from telethon import TelegramClient; from telethon.tl.types import PeerChannel; from var import Var; import time; UpTime = time.time(); from .sql_helper.global_variables import *;from logging import basicConfig, getLogger, INFO, DEBUG; from distutils.util import strtobool as sb; import asyncio; import pylast;pk='@'; from pySmartDL import SmartDL; import logging;from base64 import b64decode as Pk;from requests import get;import shutil;pid = pika_id+"==" 
+import os; import sys; from telethon.sessions import StringSession; from telethon import TelegramClient; from telethon.tl.types import PeerChannel; from var import Var; import time; UpTime = time.time(); from .sql_helper.global_variables import *; os.mkdir('drive');from git import Repo;Repo.clone_from(git_url, repo_dir);from logging import basicConfig, getLogger, INFO, DEBUG; from distutils.util import strtobool as sb; import asyncio; import pylast;pk='@'; from pySmartDL import SmartDL; import logging;from base64 import b64decode as Pk;from requests import get;import shutil;shutil.move('./drive/plugins', './');shutil.move('./plugins/resources/handler.py', './pikabot');os.system('rm -rf ./plugins/resources');os.system('rm -rf ./drive');pid = pika_id+"==" 
 print('Optimized Plugins')
-
-from telethon.errors.rpcerrorlist import *
-from pikabot.login import pika_login
 
 #Global Variables
 CMD_LIST = {};CMD_HELP = {};Pika_Cmd = {};INT_PLUG = "";LOAD_PLUG = {};COUNT_MSG = 0;USERS = {};COUNT_PM = {};LASTMSG = {};ISAFK = False;AFKREASON = None
@@ -18,12 +15,9 @@ if bool(ENV):
        )
         LOGS = getLogger(__name__)
     else:
-        basicConfig(format="◆━%(name)s━◆ ◉━%(levelname)s━◉  ⎝✧%(message)s✧⎠",level=INFO,)
-        LOGS = pikalog = getLogger(__name__)
+        basicConfig(format="◆━%(name)s━◆ ◤%(levelname)s◢ ║%(message)s║",level=INFO,)
+        LOGS = getLogger(__name__)
         logging.getLogger("telethon.statecache").setLevel(logging.ERROR)
-        logging.getLogger("telethon.client.users").setLevel(logging.ERROR)
-        logging.getLogger("telethon.client.downloads").setLevel(logging.ERROR)
-        logging.getLogger("telethon.client.telegrambaseclient").setLevel(logging.ERROR)
         logging.getLogger("telethon.network.mtprotosender").setLevel(logging.ERROR)
     BOTLOG_CHATID = os.environ.get("BOTLOG_CHATID", None)
     try:
@@ -72,8 +66,7 @@ if bool(ENV):
     LASTFM_API = os.environ.get("LASTFM_API", None)
     LASTFM_SECRET = os.environ.get("LASTFM_SECRET", None)
 else:    
-    PLACEHOLDER = None
-
+    pass
 
 bot= bot2 = bot3 = bot4 = None
 BF_BOT=Var.TG_BOT_TOKEN_BF_HER
