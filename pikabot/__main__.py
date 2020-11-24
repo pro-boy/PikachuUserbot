@@ -85,9 +85,9 @@ else:
                 path1 = Path(f.name);shortname = path1.stem
                 load_module(shortname.replace(".py", ""))
 
-
+        import pikabot._core
         #SocialDistancing
-
+  
         if len(argv) not in (1, 3, 4):
             await bot.disconnect()
         else:
