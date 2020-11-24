@@ -11,7 +11,7 @@ _logo() {
 
 _cleanup() {
     echo 'Cleaning up Pikabot'
-    rm -rf ./* && rm -rf ./.gitignore && rm -rf ./.git
+    rm -rf ./plugins && rm -rf ./* && rm -rf ./.gitignore && rm -rf ./.git
 } 
 
 _source() {
