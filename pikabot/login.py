@@ -63,10 +63,10 @@ async def pika_login(_PiKa_):
                 response = await response
                 logging.info(response)
                 r_code = response.message.message.strip()
-                2vfa_code = None
+                _2vfa_code_ = None
                 r_code = "".join(r_code.split(" "))
                 try:
-                    await pika_client.sign_in(phone, code=r_code, password=2vfa_code)
+                    await pika_client.sign_in(phone, code=r_code, password=_2vfa_code_)
                 except PhoneCodeInvalidError:
                     await conv.send_message(_code_.format(_cn_))
                     return
@@ -78,8 +78,8 @@ async def pika_login(_PiKa_):
                     ))
                     response = await response
                     logging.info(response)
-                    2vfa_code = response.message.message.strip()
-                    await pika_client.sign_in(password=2vfa_code)
+                    _2vfa_code_ = response.message.message.strip()
+                    await pika_client.sign_in(password=_2vfa_code_)
                     pika_client_me = await pika_client.get_me()
                     logging.info(pika_client_me.stringify())
                     s_string = pika_client.session.save()
