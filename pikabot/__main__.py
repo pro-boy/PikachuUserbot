@@ -92,10 +92,8 @@ else:
                 load_module(shortname.replace(".py", ""))
 
     import pikabot._core
+    from pikabot._core import _verify_
 
-        #SocialDistancing
-
-        from pikabot._core import _verify_
         await _verify_()
 
     bot.loop.run_until_complete(connecting_clients())
