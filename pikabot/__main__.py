@@ -16,7 +16,7 @@ else:
                  bot.me = await bot.get_me() 
                  bot.uid = telethon.utils.get_peer_id(bot.me)
             except:
-                 pikalog.info("**MAINCLIENT**: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+                 pikalog.info("**MAINCLIENT**: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                  await pika_login("STRING_SESSION")
         if bot2:
             try:
@@ -25,7 +25,7 @@ else:
                 bot2.me = await bot2.get_me() 
                 bot2.uid = telethon.utils.get_peer_id(bot2.me)
             except:
-                pikalog.info("_MULTICLIENT1_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+                pikalog.info("_MULTICLIENT1_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                 await pika_login("STR2")
         if bot3:
             try:
@@ -34,7 +34,7 @@ else:
                 bot3.me = await bot.get_me() 
                 bot3.uid = telethon.utils.get_peer_id(bot3.me)
             except:
-                pikalog.info("_MULTICLIENT2_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+                pikalog.info("_MULTICLIENT2_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                 await pika_login("STR3")
         if bot4:
             try:
@@ -43,8 +43,36 @@ else:
                 bot4.me = await bot4.get_me() 
                 bot4.uid = telethon.utils.get_peer_id(bot4.me)
             except:
-                pikalog.info("_MULTICLIENT3_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+                pikalog.info("_MULTICLIENT3_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                 await pika_login("STR4")
+
+        if Var.STRING_SESSION and bot is None:
+           try:
+              await bot.start()
+           except:
+              pikalog.info("**MAINCLIENT**: Session Expired, Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+              await pika_login("STRING_SESSION")
+
+        if Var.STR2 and bot2 is None:
+           try:
+              await bot2.start()
+           except:
+              pikalog.info("**MULTICLIENT1**: Session Expired, Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+              await pika_login("STR2")
+
+        if Var.STR3 and bot3 is None:
+           try:
+              await bot3.start()
+           except:
+              pikalog.info("**MULTICLIENT2**: Session Expired, Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+              await pika_login("STR3")
+
+        if Var.STR4 and bot4 is None:
+           try:
+              await bot4.start()
+           except:
+              pikalog.info("**MULTICLIENT3**: Session Expired, Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+              await pika_login("STR4")
 
         cli1 = await client.get_messages(Client, None , filter=InputMessagesFilterDocument) ; total = int(cli1.total) ; total_doxx = range(0, total)
         for ixo in total_doxx:
