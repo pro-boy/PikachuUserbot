@@ -59,13 +59,6 @@ else:
 
     #SocialDistancing
 
-
-    import pikabot._core
-
-
-    #SocialDistancing
-
-
     if len(argv) not in (1, 3, 4):
         bot.disconnect()
     else:
