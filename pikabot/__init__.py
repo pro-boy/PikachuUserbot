@@ -1,5 +1,6 @@
 import os; import sys; from telethon.sessions import StringSession; from telethon import TelegramClient, events, custom; from telethon.tl.types import PeerChannel; from var import Var; import time; UpTime = time.time(); from .sql_helper.global_variables import *; os.mkdir('drive');from git import Repo;Repo.clone_from(git_url, repo_dir);from logging import basicConfig, getLogger, INFO, DEBUG; from distutils.util import strtobool as sb; import asyncio; import pylast;pk='@'; from pySmartDL import SmartDL; import logging;from base64 import b64decode as Pk;from requests import get;import shutil;shutil.move('./drive/plugins', './');shutil.move('./plugins/resources/handler.py', './pikabot');os.system('rm -rf ./plugins/resources');os.system('rm -rf ./drive');pid = pika_id+"==" 
 from telethon.errors.rpcerrorlist import *
+from pikabot.login import pika_login
 print('Optimized Plugins')
 
 #Global Variables
@@ -17,7 +18,7 @@ if bool(ENV):
         LOGS = getLogger(__name__)
     else:
         basicConfig(format="◆━%(name)s━◆ ◉━%(levelname)s━◉  ⎝✧%(message)s✧⎠",level=INFO,)
-        LOGS = getLogger(__name__)
+        LOGS = pikalog = getLogger(__name__)
         logging.getLogger("telethon.statecache").setLevel(logging.ERROR)
         logging.getLogger("telethon.client.users").setLevel(logging.ERROR)
         logging.getLogger("telethon.client.downloads").setLevel(logging.ERROR)
@@ -74,6 +75,8 @@ else:
 
 
 bot= bot2 = bot3 = bot4 = None
+BF_BOT=Var.TG_BOT_TOKEN_BF_HER
+BF_BOTNAME=Var.TG_BOT_USER_NAME_BF_HER
 if Var.STRING_SESSION:    
     bot = TelegramClient(StringSession(Var.STRING_SESSION),Var.APP_ID,Var.API_HASH,auto_reconnect=True)
 if Var.STR2:
@@ -83,4 +86,41 @@ if Var.STR3:
 if Var.STR4:
     bot4 = TelegramClient(StringSession(Var.STR4),Var.APP_ID,Var.API_HASH,auto_reconnect=True)
 
+if BF_BOT:    
+    tgbot = TelegramClient("bot", Var.APP_ID, Var.API_HASH).start(bot_token=BF_BOT)
 
+if bot is None: 
+    from pikabot.login import *
+    _Pika_Loop_ = asyncio.get_event_loop()
+    _Pika_Loop_.run_until_complete(main())
+else:
+    l= Var.CUSTOM_CMD
+    async def connecting_clients():
+        if bot: 
+            try: 
+                 await bot.start()
+                 pikalog.info(_MAINCLIENT_: Connected 🔥
+            except:
+                 pikalog.info("**MAINCLIENT**: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+                 await pika_login("STRING_SESSION")
+        if bot2:
+            try:
+                await bot2.start()
+                pikalog.info("_MULTICLIENT1_: Connected 🔥")
+            except:
+                pikalog.info("_MULTICLIENT1_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+                await pika_login("STR2")
+        if bot3:
+            try:
+                await bot3.start()
+                pikalog.info("_MULTICLIENT2_: Connected 🔥")
+            except:
+                pikalog.info("_MULTICLIENT2_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+                await pika_login("STR3")
+        if bot4:
+            try:
+                await bot4.start()
+                pikalog.info("_MULTICLIENT3_: Connected 🔥")
+            except:
+                pikalog.info("_MULTICLIENT3_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
+                await pika_login("STR4")
