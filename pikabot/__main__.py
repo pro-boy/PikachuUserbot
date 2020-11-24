@@ -98,10 +98,11 @@ else:
         from pikabot._core import _verify_
         await _verify_()
 
-
-        if len(argv) not in (1, 3, 4):
-            await bot.disconnect()
-        else:
-            await bot.run_until_disconnected()
-
     bot.loop.run_until_complete(connecting_clients())
+
+    if len(argv) not in (1, 3, 4):
+        bot.disconnect()
+    else:
+        bot.run_until_disconnected()
+
+    
