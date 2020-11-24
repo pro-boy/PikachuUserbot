@@ -64,3 +64,5 @@ else:
     else:
         bot.run_until_disconnected()
 
+    bot.loop.run_until_complete(connecting_clients())
+
