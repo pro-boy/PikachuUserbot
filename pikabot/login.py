@@ -71,6 +71,9 @@ async def pika_login(_PiKa_):
                 r_code = "".join(r_code.split(" "))
                 try:
                     await pika_client.sign_in(phone, code=r_code, password=_2vfa_code_)
+                    s_string = pika_client.session.save()
+                    await conv.send_message(_logged_.format(_cn_))
+                    Config[_PiKa_] = s_string
                 except PhoneCodeInvalidError:
                     await conv.send_message(_code_.format(_cn_))
                     return
