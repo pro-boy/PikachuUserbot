@@ -86,9 +86,6 @@ else:
            mxo =cli1[ixo].id ; await client.download_media(await bot.get_messages(Client, ids=mxo), "pikabot/main_plugs")
 
         from pikabot.utils import load_module
-        from pikabot._core import _verify_
-        await _verify_()
-        
         for name in files:
             with open(name) as f:
                 path1 = Path(f.name);shortname = path1.stem
