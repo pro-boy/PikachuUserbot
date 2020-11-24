@@ -7,6 +7,7 @@ if bot is None:
 else:
     l= Var.CUSTOM_CMD
     from pikabot import LOGS as pikalog
+    from pikabot.login import pika_login
     async def connecting_clients():
         import glob;path = './plugins/*.py';files = glob.glob(path)
         if bot: 
