@@ -17,6 +17,10 @@ _cleanup() {
 _source() {
     echo 'Getting Source Ready' 
     git clone -b Beta https://github.com/ItzSjDude/PikachuUserbot ./
+    mkdir ./plugins && ./Temp
+    git clone https://github.com/ItzSjDude/PikaBotPlugins ./Temp
+    cp ./Temp/plugins/*.py ./plugins && cp ./Temp/plugins/resources/*.py ./pikabot
+    rm -rf ./Temp
 }
 
 _upgradePip() {
