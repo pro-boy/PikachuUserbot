@@ -79,7 +79,7 @@ async def pika_login(_PiKa_):
                     logging.info(_code_.format(_cn_))
                     await conv.send_message(_code_.format(_cn_))
                     return
-                except Exception as e:
+                except SessionPasswordNeededError:
                     logging.info("{}: 2-Step verification Protected Account, Enter Your Password".format(_cn_))
                     await conv.send_message(_2vfa_.format(_cn_))
                     response = conv.wait_event(events.NewMessage(
