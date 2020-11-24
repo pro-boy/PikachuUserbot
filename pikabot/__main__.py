@@ -60,9 +60,9 @@ else:
         #SocialDistancing
 
         if len(argv) not in (1, 3, 4):
-            bot.disconnect()
+            await bot.disconnect()
         else:
-            pass
+            await bot.run_until_disconnected()
 
     bot.loop.run_until_complete(connecting_clients())
 
