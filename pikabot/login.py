@@ -36,7 +36,7 @@ async def pika_login(_PiKa_):
         Var.APP_ID,
         Var.API_HASH
     ).start(bot_token=Var.TG_BOT_TOKEN_BF_HER)
-    _cn_=get_client_(_PiKa_)
+    _cn_=get_client(_PiKa_)
     async with _PikaBot_:
         me = await _PikaBot_.get_me()
         logging.info(me.first_name)
