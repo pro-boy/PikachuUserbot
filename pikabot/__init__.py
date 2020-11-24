@@ -99,7 +99,7 @@ else:
         if bot: 
             try: 
                  await bot.start()
-                 pikalog.info(_MAINCLIENT_: Connected 🔥")
+                 pikalog.info("_MAINCLIENT_: Connected 🔥")
             except:
                  pikalog.info("**MAINCLIENT**: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                  await pika_login("STRING_SESSION")
