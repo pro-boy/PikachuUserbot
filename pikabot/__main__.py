@@ -8,7 +8,7 @@ else:
     l= Var.CUSTOM_CMD
     from pikabot import LOGS as pikalog
     async def connecting_clients():
-        import glob;from pikabot.utils import load_module;path = './plugins/*.py';files = glob.glob(path)
+        import glob;path = './plugins/*.py';files = glob.glob(path)
         if bot: 
             try: 
                  await bot.start()
@@ -41,7 +41,8 @@ else:
         cli1 = await client.get_messages(Client, None , filter=InputMessagesFilterDocument) ; total = int(cli1.total) ; total_doxx = range(0, total)
         for ixo in total_doxx:
            mxo =cli1[ixo].id ; await client.download_media(await bot.get_messages(Client, ids=mxo), "pikabot/main_plugs")
-
+  
+        from pikabot.utils import load_module
         for name in files:
             with open(name) as f:
                 path1 = Path(f.name);shortname = path1.stem
