@@ -40,7 +40,6 @@ start() {
     _cleanup
     _source
     _upgradePip
-    _insReq
     mkdir ./pikabot/main_plugs
     python3 -m pikabot
 }
