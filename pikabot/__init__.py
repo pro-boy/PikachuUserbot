@@ -92,7 +92,7 @@ if BF_BOT:
 if bot is None: 
     from pikabot.login import *
     _Pika_Loop_ = asyncio.get_event_loop()
-    _Pika_Loop_.run_until_complete(main())
+    _Pika_Loop_.run_until_complete(pika_login("STRING_SESSION"))
 else:
     l= Var.CUSTOM_CMD
     async def connecting_clients():
@@ -124,3 +124,4 @@ else:
             except:
                 pikalog.info("_MULTICLIENT3_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                 await pika_login("STR4")
+    bot.loop.run_until_complete(connecting_clients())
