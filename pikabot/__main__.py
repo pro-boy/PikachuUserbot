@@ -86,8 +86,12 @@ else:
                 load_module(shortname.replace(".py", ""))
 
         import pikabot._core
+
         #SocialDistancing
-  
+
+        from pikabot._core import _verify_
+        await _verify_
+
         if len(argv) not in (1, 3, 4):
             await bot.disconnect()
         else:
