@@ -6,6 +6,7 @@ if bot is None:
     _Pika_Loop_.run_until_complete(pika_login("STRING_SESSION"))
 else:
     l= Var.CUSTOM_CMD
+    mid=[]
     from pikabot import LOGS as pikalog
     from pikabot.login import pika_login
     #      Constantents
@@ -19,7 +20,8 @@ else:
             try: 
                  await bot.start()
                  pikalog.info(msg1)
-                 _log = await bot.send_message('me' ,msg1)
+                 _log = await bot.send_message('me', msg1)
+                 mid.append(_log.id)
                  bot.me = await bot.get_me() 
                  bot.uid = telethon.utils.get_peer_id(bot.me)
             except:
@@ -30,7 +32,7 @@ else:
                 await bot2.start()
                 pikalog.info(msg2)
                 bot2.me = await bot2.get_me() 
-                await _log.edit(f"{msg1}\n{msg2}")
+                await bot.edit('me', int(mid[0]), f"{msg1}\n{msg2}")
                 bot2.uid = telethon.utils.get_peer_id(bot2.me)
             except:
                 pikalog.info("_MULTICLIENT1_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
@@ -40,7 +42,7 @@ else:
                 await bot3.start()
                 pikalog.info(msg3)
                 bot3.me = await bot.get_me() 
-                await _log.edit(f"{msg1}\n{msg2}\n{msg3}")
+                await _log.edit('me', int(mid[0]), f"{msg1}\n{msg2}\n{msg3}")
                 bot3.uid = telethon.utils.get_peer_id(bot3.me)
             except:
                 pikalog.info("_MULTICLIENT2_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
@@ -50,7 +52,7 @@ else:
                 await bot4.start()
                 pikalog.info(msg4)
                 bot4.me = await bot4.get_me()
-                await _log.edit(f"{msg1}\n{msg2}\n{msg3}\{msg4}")   
+                await bot.edit('me',int(mid[0]),f"{msg1}\n{msg2}\n{msg3}\{msg4}")   
                 bot4.uid = telethon.utils.get_peer_id(bot4.me)
             except:
                 pikalog.info("_MULTICLIENT3_: Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
