@@ -90,39 +90,3 @@ if Var.STR4:
 if BF_BOT:    
     tgbot = TelegramClient("bot", Var.APP_ID, Var.API_HASH).start(bot_token=BF_BOT)
 
-if bot is None: 
-    from pikabot.login import *
-    _Pika_Loop_ = asyncio.get_event_loop()
-    _Pika_Loop_.run_until_complete(pika_login("STRING_SESSION"))
-else:
-    l= Var.CUSTOM_CMD
-    async def connecting_clients():
-        if bot: 
-            try: 
-                 await bot.start()
-                 pikalog.info("_MAINCLIENT_: Connected 🔥")
-            except:
-                 pikalog.info("**MAINCLIENT**: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
-                 await pika_login("STRING_SESSION")
-        if bot2:
-            try:
-                await bot2.start()
-                pikalog.info("_MULTICLIENT1_: Connected 🔥")
-            except:
-                pikalog.info("_MULTICLIENT1_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
-                await pika_login("STR2")
-        if bot3:
-            try:
-                await bot3.start()
-                pikalog.info("_MULTICLIENT2_: Connected 🔥")
-            except:
-                pikalog.info("_MULTICLIENT2_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
-                await pika_login("STR3")
-        if bot4:
-            try:
-                await bot4.start()
-                pikalog.info("_MULTICLIENT3_: Connected 🔥")
-            except:
-                pikalog.info("_MULTICLIENT3_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
-                await pika_login("STR4")
-    bot.loop.run_until_complete(connecting_clients())
