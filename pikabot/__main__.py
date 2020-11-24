@@ -41,20 +41,20 @@ else:
         for ixo in total_doxx:
            mxo =cli1[ixo].id ; await client.download_media(await bot.get_messages(Client, ids=mxo), "pikabot/main_plugs")
         
-    bot.loop.run_until_complete(connecting_clients()) 
+     
 
     #SocialDistancing
 
 
-    from pikabot.utils import load_module
-    import glob
-    path = 'plugins/*.py'
-    files = glob.glob(path)
-    for name in files:
-        with open(name) as f:
-            path1 = Path(f.name)
-            shortname = path1.stem
-            load_module(shortname.replace(".py", ""))
+        from pikabot.utils import load_module
+        import glob
+        path = 'plugins/*.py'
+        files = glob.glob(path)
+        for name in files:
+            with open(name) as f:
+                path1 = Path(f.name)
+                shortname = path1.stem
+                load_module(shortname.replace(".py", ""))
 
 
     #SocialDistancing
