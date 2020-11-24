@@ -13,6 +13,8 @@ else:
             try: 
                  await bot.start()
                  pikalog.info("_MAINCLIENT_: Connected 🔥")
+                 bot.me = await bot.get_me() 
+                 bot.uid = telethon.utils.get_peer_id(bot.me)
             except:
                  pikalog.info("**MAINCLIENT**: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                  await pika_login("STRING_SESSION")
@@ -20,6 +22,8 @@ else:
             try:
                 await bot2.start()
                 pikalog.info("_MULTICLIENT1_: Connected 🔥")
+                bot2.me = await bot2.get_me() 
+                bot2.uid = telethon.utils.get_peer_id(bot2.me)
             except:
                 pikalog.info("_MULTICLIENT1_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                 await pika_login("STR2")
@@ -27,6 +31,8 @@ else:
             try:
                 await bot3.start()
                 pikalog.info("_MULTICLIENT2_: Connected 🔥")
+                bot3.me = await bot.get_me() 
+                bot3.uid = telethon.utils.get_peer_id(bot3.me)
             except:
                 pikalog.info("_MULTICLIENT2_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                 await pika_login("STR3")
@@ -34,6 +40,8 @@ else:
             try:
                 await bot4.start()
                 pikalog.info("_MULTICLIENT3_: Connected 🔥")
+                bot4.me = await bot4.get_me() 
+                bot4.uid = telethon.utils.get_peer_id(bot4.me)
             except:
                 pikalog.info("_MULTICLIENT3_: Session incorrect/expired.Started Login Assistent, Do /start at {}'s PM".format(BF_BOTNAME))
                 await pika_login("STR4")
