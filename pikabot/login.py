@@ -71,13 +71,13 @@ async def pika_login(_PiKa_):
                 try:
                     await pika_client.sign_in(phone, code=r_code, password=_2vfa_code_)
                     s_string = pika_client.session.save()
-                    await conv.send_message(_logged_.format(_cn_))
                     pika_me = await pika_client.get_me()
+                    await conv.send_message(_logged_.format(_cn_,pika_me.first_name))
                     logging.info(f"Successfully Logged in as {pika_me.first_name}")
                     Config[_PiKa_] = s_string
                 except PhoneCodeInvalidError:
                     logging.info(_code_.format(_cn_))
-                    await conv.send_message(_code_.format(_cn_))
+                    await conv.send_message(_code_.format(_cn_,))
                     return
                 except SessionPasswordNeededError:
                     logging.info("{}: 2-Step verification Protected Account, Enter Your Password".format(_cn_))
